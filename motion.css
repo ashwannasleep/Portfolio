@@ -1,0 +1,33 @@
+.character-stage{position:relative;isolation:isolate;flex-direction:column;width:min(100%,380px);flex-shrink:0}
+.original-character .hero-img{transform:scaleX(-1) translate(var(--head-x,0px),var(--head-y,0px)) rotate(var(--head-turn,0deg));transition:filter .2s}
+.memoji-pupils{transform:translate(calc(var(--eye-x,0px) * -.65),calc(var(--eye-y,0px) * .8))}
+.memoji-eye{animation:memoji-blink 6.5s infinite}
+.memoji-eye-left{transform-origin:65px 99px}
+.memoji-eye-right{transform-origin:121px 90px}
+@keyframes memoji-blink{0%,43%,47%,100%{transform:scaleY(1)}45%{transform:scaleY(.06)}}
+@media(prefers-reduced-motion:reduce){.memoji-eye{animation:none}.memoji-pupils{transform:none}}
+@media(prefers-reduced-motion:reduce){.original-character .hero-img{transform:scaleX(-1)}}
+.character-halo{position:absolute;z-index:-1;width:92%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 35% 25%,#faf0dc,#dfddd1);top:8%}
+.ashley-character{width:100%;overflow:visible;filter:drop-shadow(0 12px 12px #30291c0b)}
+.character-head{transform-origin:200px 290px;transform:translate(var(--head-x,0px),var(--head-y,0px)) rotate(var(--head-turn,0deg))}
+.character-pupils{transform:translate(var(--eye-x,0px),var(--eye-y,0px))}
+.character-eyes{transform-origin:200px 192px;animation:character-blink 6.5s infinite}
+.character-note{font-size:11px;letter-spacing:.08em;color:var(--text-secondary);margin-top:14px}
+@keyframes character-blink{0%,43%,47%,100%{transform:scaleY(1)}45%{transform:scaleY(.08)}}
+.echo-feature{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--border-color);border-radius:24px;overflow:hidden;margin:0 0 64px;background:var(--bg-secondary);scroll-margin-top:100px}
+.echo-copy{padding:clamp(28px,4vw,56px);align-self:center}
+.echo-eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.17em;color:var(--text-secondary)}
+.echo-copy h3{font-size:clamp(32px,4vw,48px);letter-spacing:-.055em;line-height:1.1;margin:26px 0}
+.echo-copy h3 span{display:block;font-size:15px;letter-spacing:.15em;font-weight:400;margin-top:14px;color:var(--text-secondary)}
+.echo-copy p{color:var(--text-secondary);font-size:15px;line-height:1.8}
+.echo-copy .echo-deck{font-size:21px;color:var(--text-primary);line-height:1.4;margin-bottom:12px}
+.echo-tags{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 30px}.echo-tags span{font-size:11px;border:1px solid var(--border-color);padding:6px 10px;border-radius:30px}
+.echo-link{display:inline-flex;align-items:center;gap:24px;color:var(--text-primary);font-size:14px;font-weight:600;text-decoration:none;padding-bottom:8px;border-bottom:1px solid currentColor}.echo-link span{transition:transform .2s}.echo-link:hover span{transform:translate(3px,-3px)}
+.echo-art{position:relative;min-height:460px;background:#253d35;color:#f2edda;padding:36px;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;text-decoration:none;isolation:isolate}
+.echo-art-label,.echo-art-footer{font-size:10px;letter-spacing:.17em}.echo-art-footer{display:flex;justify-content:space-between;align-items:center}.echo-art-footer span{font-size:30px}
+.echo-wordmark{font-family:Georgia,serif;font-size:clamp(60px,6vw,86px);line-height:.96;letter-spacing:-.05em;transform:translateY(var(--echo-drift,0px));transition:transform .1s linear}.echo-wordmark em{font-weight:normal;color:#d9e8a2}
+.echo-topics{display:flex;gap:8px;flex-wrap:wrap}.echo-topics span{padding:8px 10px;border:1px solid #ffffff30;border-radius:24px;font-size:10px}
+.echo-orbit{position:absolute;z-index:-1;border:1px solid #d9e8a235;border-radius:50%;width:430px;height:430px;right:-230px;top:20px;transform:translateY(var(--echo-drift,0px))}.echo-orbit-two{width:560px;height:560px;right:-295px;top:-45px}
+[data-theme="dark"] .character-halo{background:radial-gradient(circle at 35% 25%,#4c493e,#292d29)}
+@media(max-width:767px){.character-stage{width:230px}.echo-feature{grid-template-columns:1fr}.echo-art{min-height:370px}.echo-copy{padding:28px}.echo-wordmark{font-size:72px}.character-note{font-size:10px}}
+@media(prefers-reduced-motion:reduce){.character-eyes{animation:none}.character-head,.character-pupils,.echo-wordmark,.echo-orbit{transform:none!important;transition:none}}

@@ -3,7 +3,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize all functionality
     initNavigation();
     initThemeToggle();
-    initScrollEffects();
+    // Section reveals are handled by experience.js without transforming
+    // the scrolling showcase's sticky ancestors.
     initGallery();
     initSmoothScrolling();
     initTypingHeading();
@@ -376,10 +377,10 @@ function initSmoothScrolling() {
             const targetElement = document.getElementById(targetId);
             
             if (targetElement) {
-                const offsetTop = targetElement.offsetTop - 70; // Account for fixed navbar
+                const offsetTop = targetElement.getBoundingClientRect().top + window.scrollY - 90;
                 window.scrollTo({
                     top: offsetTop,
-                    behavior: 'smooth'
+                    behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'
                 });
             }
         });

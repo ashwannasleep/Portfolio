@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="referrer" content="no-referrer" />
 <title>Notes on LLM Systems — Ashley Chang</title>
-<meta name="description" content="Working notes on how LLM applications are built: tokens and cost, attention, sampling, prompting, RAG, evaluation, and safety." />
+<meta name="description" content="LLM engineering field notes: context, reasoning budgets, structured outputs, tool workflows, evaluation, and safety. Revised September 2026." />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <style>
   :root {
@@ -152,21 +152,21 @@
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto !important; } }
   @media print { nav.toc, aside, .btnrow, .copy { display: none !important; } .columns { grid-template-columns: 1fr; } }
 </style>
+<link rel="stylesheet" href="notes.css" />
 </head>
 <body>
 
 <header class="masthead">
   <div class="wrap">
     <a class="backlink" href="index.html#writing">← Back to ashwannasleep.com</a>
-    <h1>Notes on LLM Systems</h1>
+    <p class="edition">ENGINEERING FIELD NOTES / REVISED SEPTEMBER 12, 2026</p>
+    <h1>Building beyond<br>the prompt.</h1>
     <p class="standfirst">
-      What I've worked out so far about building applications on language models — tokens and cost,
-      attention, sampling, prompting, retrieval, evaluation, and safety.
+      Notes on LLM systems: context, tools, reasoning budgets, and the checks that make a demo dependable.
     </p>
     <p class="caveat">
-      These are learning notes, not a reference. I'm writing them as I go, so expect gaps and the
-      occasional thing I'll later find out I had backwards. The interactive pieces run entirely in
-      your browser; nothing here calls a model.
+      A learning notebook, not a claim of production experience. New sections link to primary sources;
+      provider-specific behavior can change. The interactive exercises are local teaching simulations, not model calls.
     </p>
   </div>
 </header>
@@ -174,6 +174,9 @@
 <nav class="toc">
   <div class="wrap">
     <ul>
+      <li><a href="#systems">Systems now</a></li>
+      <li><a href="#contracts">Output contracts</a></li>
+      <li><a href="#agents">Tools &amp; agents</a></li>
       <li><a href="#basics">Basics</a></li>
       <li><a href="#tokens">Tokens &amp; cost</a></li>
       <li><a href="#transformer">Transformers</a></li>
@@ -193,18 +196,49 @@
 <div class="columns">
 <main>
 
+  <section id="systems">
+    <h2>01 / The system around the model</h2>
+    <p class="lede">A longer prompt is not an architecture. Decide what the model needs to see, what it is allowed to do, and how you will recognize a bad result.</p>
+    <div class="grid2">
+      <div class="panel"><h3>Context is a working set</h3><p>Keep the task, relevant evidence, tool results, and durable decisions available. Retrieve details when needed; compact long histories carefully. A summary can lose constraints, so preserve source links and verify important facts after compaction.</p><a class="source" href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents">Source: Context engineering ↗</a></div>
+      <div class="panel"><h3>Reasoning has a budget</h3><p>Some models expose thinking or effort controls. Evaluate that extra computation against task success, latency, and cost. Parameter support differs by model; temperature advice is not interchangeable with reasoning configuration.</p><a class="source" href="https://platform.claude.com/docs/en/about-claude/models/extended-thinking-models">Source: Thinking controls ↗</a></div>
+    </div>
+    <div class="note"><p><strong>A useful experiment:</strong> run the same held-out tasks with a minimal context, retrieved context, and a compacted history. Compare correctness and missing constraints—not just answer length.</p></div>
+  </section>
+
+  <section id="contracts">
+    <h2>02 / Structure is not correctness</h2>
+    <p class="lede">“Return JSON” is a request. A supported structured-output schema is an interface contract. Neither proves that the values are true.</p>
+    <ul class="rule-list">
+      <li><strong>Constrain the shape:</strong> use schema-constrained output or strict tool arguments where supported.</li>
+      <li><strong>Validate meaning:</strong> check identifiers, ranges, ownership, and business rules in application code.</li>
+      <li><strong>Handle exceptions:</strong> refusals, interrupted output, and unsupported schema constraints need explicit paths.</li>
+      <li><strong>Keep authority outside the model:</strong> valid arguments do not authorize a payment, deletion, or message.</li>
+    </ul>
+    <p><a class="source" href="https://platform.claude.com/docs/en/build-with-claude/structured-outputs">Source: Structured outputs and strict tool use ↗</a></p>
+  </section>
+
+  <section id="agents">
+    <h2>03 / Start with a workflow</h2>
+    <p class="lede">Use a fixed workflow when the steps are known. Use an agent loop when the next step genuinely depends on what it discovers.</p>
+    <div class="grid2">
+      <div class="panel"><h3>A bounded tool loop</h3><ol><li>Give the model scoped tools and a clear task.</li><li>Validate proposed arguments and permissions.</li><li>Execute, then return the observed result.</li><li>Stop on completion, a budget limit, or a need for human approval.</li></ol><p>Make writes idempotent where possible. A retry should not create a duplicate side effect.</p></div>
+      <div class="panel"><h3>Evaluate the outcome</h3><p>Inspect the final environment state and the tool trace, not only the final answer. Run multiple trials for variable behavior. Combine deterministic checks with calibrated human or model grading.</p><p>Track successful completion, unauthorized actions, cost, and latency separately. A polished answer cannot compensate for a wrong action.</p></div>
+    </div>
+    <p class="source">Reading: <a href="https://www.anthropic.com/engineering/building-effective-agents">Workflows vs agents</a> · <a href="https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents">Agent evaluation</a></p>
+  </section>
+
   <!-- BASICS -->
   <section id="basics">
     <h2>What an LLM actually is</h2>
     <p class="lede">
       A large language model is a neural network trained to predict the next token in a sequence.
-      That one objective, scaled with data and compute, is enough to produce summarization, question
-      answering, coding help, and planning.
+      Next-token prediction is a common pretraining objective. Instruction tuning, preference training,
+      and other post-training methods further shape deployed assistants; some systems also process images, audio, or other modalities.
     </p>
     <p>
-      The part worth internalizing early: the model has no notion of truth. It produces text that is
-      statistically likely given its training data and your prompt. Fluency and correctness are
-      separate properties, and it is very good at the first one.
+      A useful operational distinction: fluent output is not evidence of correctness. Models can solve
+      problems and still produce unsupported claims. Verify against sources, executable checks, or task-specific evaluation.
     </p>
 
     <div class="grid2">
@@ -253,8 +287,7 @@
           <div class="total"><span>Estimated tokens</span><span class="mono" id="tokenCount">0</span></div>
         </div>
         <div class="note">
-          <p><strong>On overflow:</strong> exceed the context window and older content gets truncated,
-          usually silently. Summarize, chunk, or retrieve instead of pasting everything.</p>
+          <p><strong>On overflow:</strong> requests may be rejected, truncated, or compacted depending on the API and application. Budget context explicitly and handle the documented behavior rather than assuming old messages survive.</p>
         </div>
       </div>
 
@@ -284,8 +317,8 @@
         </div>
         <div class="btnrow">
           <button class="solid" onclick="computeCost()">Compute</button>
-          <button onclick="setCostPresets('cheap')">Cheap preset</button>
-          <button onclick="setCostPresets('premium')">Premium preset</button>
+          <button onclick="setCostPresets('cheap')">Example rates A</button>
+          <button onclick="setCostPresets('premium')">Example rates B</button>
         </div>
         <div class="readout">
           <div><span>Prompt</span><span class="mono" id="promptCost">$0.00</span></div>
@@ -293,9 +326,7 @@
           <div class="total"><span>Total per call</span><span class="mono" id="totalCost">$0.00</span></div>
         </div>
         <div class="note">
-          <p><strong>Where cost actually goes:</strong> repeated context. Caching, shorter system
-          prompts, and retrieving instead of dumping whole documents move the number more than
-          switching models usually does.</p>
+          <p><strong>Illustrative text-only estimate:</strong> rates above are not current model prices. Account separately for cache reads/writes, billed reasoning, tool calls, retries, and multimodal inputs. Measure your actual workload. <a href="https://platform.claude.com/docs/en/build-with-claude/prompt-caching">Caching rules vary by provider.</a></p>
         </div>
       </div>
     </div>
@@ -355,8 +386,7 @@
     <h2>Sampling: temperature and top-p</h2>
     <p class="lede">
       The model outputs a probability distribution over the whole vocabulary. Decoding is how you
-      collapse that into one token, and it is the cheapest quality lever you have — worth
-      understanding before you start rewriting prompts.
+      collapse that into one token. This toy demonstrates the math, not the behavior of every model API.
     </p>
 
     <div class="panel">
@@ -365,7 +395,7 @@
           <div class="slider-row"><label for="temp" style="margin:0">Temperature</label><span class="mono" id="tempVal">1.00</span></div>
           <input id="temp" type="range" min="0" max="2" step="0.05" value="1" oninput="updateSampling()" />
           <p style="font-size:0.82rem;color:var(--ink-3);margin-top:6px">
-            Flattens or sharpens the distribution. 0 always takes the top token.
+            Flattens or sharpens the distribution. In this toy, 0 takes the top token; real APIs may still vary between runs.
           </p>
         </div>
         <div>
@@ -388,9 +418,7 @@
       </div>
 
       <div class="note">
-        <p><strong>Rule of thumb:</strong> low temperature for extraction, classification, and anything
-        parsed downstream. Higher only where variety is the point. If output must be valid JSON, keep
-        temperature near zero and validate anyway.</p>
+        <p><strong>Production distinction:</strong> temperature is not a schema validator. Use supported structured outputs for machine-readable responses and validate their meaning. Check model-specific parameter support before changing temperature or top-p.</p>
       </div>
     </div>
   </section>
@@ -456,8 +484,7 @@
     <div class="panel">
       <h3>Chunking and retrieval, demonstrated</h3>
       <p style="font-size:0.88rem;color:var(--ink-2)">
-        This splits your text and scores chunks by keyword overlap. Real systems embed chunks and search
-        by vector similarity — the mechanics differ, the workflow is the same.
+        This exercise uses simple keyword overlap. Production retrieval can use lexical search, vectors, or a hybrid, often followed by reranking. Measure retrieval quality against your documents and queries.
       </p>
 
       <div class="grid2">
@@ -560,10 +587,10 @@ Needs to DO something         -> tools / function calling</code></pre>
       <div class="panel">
         <h3>Levers that actually move things</h3>
         <ul class="rule-list">
-          <li><strong>Shorter prompts</strong> — stop resending unchanged context</li>
+          <li><strong>Context selection</strong> — preserve necessary state; remove irrelevant content</li>
           <li><strong>Retrieval</strong> — fetch relevant chunks, not whole documents</li>
           <li><strong>Streaming</strong> — perceived latency, not real latency</li>
-          <li><strong>Stop sequences</strong> — cut run-on generations</li>
+          <li><strong>Output budgets</strong> — bound generation and handle truncation explicitly</li>
           <li><strong>Prefix caching</strong> — reuse identical prompt prefixes</li>
         </ul>
       </div>
@@ -638,7 +665,7 @@ Needs to DO something         -> tools / function calling</code></pre>
           <li><strong>Separate instructions from data</strong> — treat retrieved text as hostile</li>
           <li><strong>Tool allowlists</strong> — expose only what's needed</li>
           <li><strong>Validate tool I/O</strong> — strictly, on both sides</li>
-          <li><strong>Harden the system message</strong> — ignore instructions found in content</li>
+          <li><strong>Enforce outside the prompt</strong> — least privilege, isolated execution, and approval for consequential actions; prompt wording alone is not a security boundary</li>
           <li><strong>Audit logs</strong> — record tool calls and retrievals</li>
         </ul>
       </div>
@@ -1019,6 +1046,9 @@ function toggleAllChunks() { allExpanded = !allExpanded; renderChunks(); }
 /* ---------- progress ---------- */
 const PROGRESS_KEY = 'llm_progress_v2';
 const progressItems = [
+  { id: 'systems', label: 'Context and reasoning budgets' },
+  { id: 'contracts', label: 'Structured output contracts' },
+  { id: 'agents', label: 'Tool workflows and agent evaluation' },
   { id: 'basics',      label: 'Basics: tokens, context, decoding' },
   { id: 'tokens',      label: 'Token and cost planning' },
   { id: 'transformer', label: 'Transformer intuition' },

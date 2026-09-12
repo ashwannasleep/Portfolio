@@ -7,6 +7,12 @@
     <meta name="theme-color" content="#FAFAFA">
     <title>Ashley Chang | Full-Stack Engineer & UX/UI Designer</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="motion.css">
+    <link rel="stylesheet" href="refined.css">
+    <link rel="stylesheet" href="experience.css">
+    <link rel="stylesheet" href="showcase.css?v=landscape-1">
+    <script src="experience.js?v=landscape-2" defer></script>
+    <script src="motion.js" defer></script>
     <link rel="icon" type="image/png" href="images/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Slab:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
@@ -42,9 +48,9 @@
 <section id="home" class="hero">
     <!-- MONU Notification Banner -->
     <div class="monu-notification">
-      <a href="https://www.monu-planner.com/" target="_blank" class="monu-notification-link">
-        <span class="new-badge">New</span>
-        <span class="notification-text">MONU Planner is live!</span>
+      <a href="#houston-echo" class="monu-notification-link">
+        <span class="new-badge">Featured</span>
+        <span class="notification-text">Meet Houston Echo</span>
         <svg class="notification-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M5 12h14M12 5l7 7-7 7"/>
         </svg>
@@ -55,23 +61,23 @@
       <div class="hero-content">
         <h1 class="hero-title">
           <span class="greeting">Hello,</span>
-          <span class="name typing-heading">I'm Ashley Chang</span>
+          <span class="name">I’m Ashley Chang<span class="name-cursor" aria-hidden="true"></span></span>
         </h1>
         <p class="hero-subtitle">
-            Full-Stack Engineer & UX/UI Designer — builds seamless, minimalist digital experiences that blend technical precision with design clarity.
+            A software engineer with a designer’s eye.<br>Taiwanese. Building in Houston.
         </p>
         <div class="hero-cta">
-          <a href="#work" class="btn btn-primary">See My Work</a>
-          <a href="#contact" class="btn btn-secondary">Let’s Connect</a>
+          <a href="#houston-echo" class="btn btn-primary">Explore my work <span aria-hidden="true">↗</span></a>
+          <a href="#about" class="btn btn-secondary">A little about me <span aria-hidden="true">→</span></a>
         </div>
         <ul class="hero-proof">
-          <li>iOS app on the App Store</li>
-          <li>Edge API on Cloudflare Workers</li>
-          <li>Writing on LLM systems</li>
+          <li>Based in Houston</li>
+          <li>Web · iOS · Backend</li>
         </ul>
       </div>
-      <div class="hero-image">
-        <img src="images/Waving.png" alt="Ashley waving" class="hero-img">
+      <div class="hero-image character-stage avatar-stage">
+        <div class="avatar-portrait" role="img" aria-label="Ashley’s 3D avatar turns her head and looks toward your cursor" tabindex="0"><div class="avatar-pose"></div></div>
+        <span class="character-note">Move your cursor. I’m listening.</span>
       </div>
     </div>
   </section>
@@ -85,21 +91,58 @@
     <!-- Featured Work Section -->
     <section id="work" class="work">
         <div class="container">
-            <h2 class="section-title">Projects</h2>
+            <div class="work-intro"><span class="eyebrow">Selected work / 2026</span><h2 class="section-title">Small details. Real-world purpose.</h2><p>Products I build, ship, and keep improving.</p></div>
+            <article id="houston-echo" class="echo-launch">
+              <div class="launch-intro">
+                <span class="eyebrow">Featured product · Houston Echo</span>
+                <h3 class="finding-headline"><span>Less digging.</span> <span>More finding.</span></h3>
+                <p>Useful local advice shouldn’t disappear in a WeChat thread.</p>
+                <a href="https://houstonecho24.io" target="_blank" rel="noopener noreferrer" class="launch-visit">Visit Houston Echo ↗</a>
+              </div>
+              <div class="echo-story">
+                <div class="echo-sticky">
+                  <div class="story-heading"><span class="eyebrow">Houston Echo / Product walkthrough</span><span class="story-count">01 / 03</span></div>
+                  <div class="story-stage">
+                    <div class="story-browser">
+                      <div class="window-chrome"><span>● ● ●</span><span>houstonecho24.io</span><span>↗</span></div>
+                      <div class="snapshot-viewport">
+                        <iframe src="images/echo-snapshot.html" title="Captured public Houston Echo homepage" tabindex="-1" inert aria-hidden="true" sandbox="allow-same-origin" loading="lazy"></iframe>
+                        <div class="echo-ad echo-ad-find" data-ad-step="1" hidden>
+                          <span class="ad-brand">HOUSTON ECHO <span>休士頓回聲</span></span>
+                          <div class="ad-message"><span class="ad-kicker">LESS SEARCHING. MORE LIVING.</span><h4>Your city.<br>A little closer.</h4><p>在休士頓，找到生活的下一站。</p></div>
+                          <div class="ad-neighborhoods"><span>Houston</span><span>Katy</span><span>Sugar Land</span></div>
+                          <div class="ad-bottom"><span>Local life, in one place.</span><span>houstonecho24.io ↗</span></div>
+                        </div>
+                        <div class="echo-ad echo-ad-trust" data-ad-step="2" hidden>
+                          <span class="ad-brand">HOUSTON ECHO <span>休士頓回聲</span></span>
+                          <div class="ad-message"><span class="ad-kicker">A BETTER PLACE TO SHARE.</span><h4>Good communities.<br>Start with clarity.</h4><p>資訊更清楚，交流更安心。</p></div>
+                          <div class="ad-principles"><span>Clear details</span><span>Open disclosure</span><span>Shared responsibility</span></div>
+                          <div class="ad-bottom"><span>Built around community guidelines.</span><span>houstonecho24.io ↗</span></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="story-note"><span class="note-index">01</span><h4>One place.<br>Not ten group chats.</h4><p>WeChat groups and RedNote have plenty of information. Finding it again is the hard part.</p></div>
+                  </div>
+                  <div class="story-controls"><div class="story-steps" aria-label="Product walkthrough"><button type="button" class="active" data-step="0" aria-label="Show centralized information" aria-pressed="true">01 <span>Gather</span></button><button type="button" data-step="1" aria-label="Show local discovery" aria-pressed="false">02 <span>Find</span></button><button type="button" data-step="2" aria-label="Show community safety context" aria-pressed="false">03 <span>Build trust</span></button></div><span class="scroll-cue">Real site capture · Scroll to explore ↓</span></div>
+                </div>
+              </div>
+              <div class="echo-origin"><span>Why I built it</span><p>WeChat groups and RedNote were full of local information—but it was scattered, repetitive, and mixed with scams. I built Houston Echo to make useful posts easier to find again: one searchable place, organized by neighborhood and topic, with clearer community rules.</p><a href="https://houstonecho24.io/community-guidelines" target="_blank" rel="noopener noreferrer">See the community rules ↗</a></div>
+            </article>
+            <h3 class="more-work-heading">More things I’ve built <span>↓</span></h3>
 
             <!-- Projects Grid -->
             <div class="projects-section projects-section--lead">
                 <div class="projects-grid">
                     <div class="project-card monu-project">
                         <a href="https://www.monu-planner.com/" target="_blank" class="project-link">
-                            <img src="images/monu.png" alt="MONU Logo" class="monu-logo">
+                            <img src="images/monu-landscape.png" alt="MONU planner website hero, with promotional buttons removed" class="monu-logo">
                         </a>
                         <div class="project-info">
                             <div class="project-heading">
                                 <h4>MONU Planner</h4>
                                 <span class="project-status status-shipped">Shipped</span>
                             </div>
-                            <p class="project-tagline">Native iOS planner on the App Store — SwiftUI client with AWS Amplify authentication and cloud sync</p>
+                            <p class="project-tagline">A calm iOS planner connecting everyday habits to bigger dreams. Designed and built with SwiftUI.</p>
                             <div class="project-actions">
                                 <a href="https://www.monu-planner.com/" target="_blank" class="project-action-btn view-live">
                                     <i class="fas fa-external-link-alt"></i>
@@ -112,37 +155,32 @@
                             </div>
                             <div class="project-details" id="monu-details">
                                 <p>
-                                    A minimalist digital planner app built with SwiftUI and AWS Amplify, designed and developed end-to-end.
-                                    MONU focuses on calm, structured planning workflows — daily tasks, habits, goals, and calendar views —
-                                    wrapped in a clean, linen-inspired UI.
+                                    MONU connects the life you want to build with what you do today. Dreams become small habits,
+                                    and those habits live alongside your tasks and calendar in one calm iOS planner.
                                 </p>
                                 <p>
-                                    <strong>Design & Product:</strong> Conducted user research and competitive analysis, then designed user flows,
-                                    wireframes, and high-fidelity prototypes in Figma. Iterated through multiple design versions based on usability feedback.
+                                    <strong>Today:</strong> Plan across day, week and month views with intentions, habits, tasks,
+                                    and merged Apple and Google calendar events.
                                 </p>
                                 <p>
-                                    <strong>Development & Impact:</strong> Built the native iOS app using SwiftUI and integrated AWS Amplify
-                                    for authentication and cloud data sync. Successfully launched on the App Store and continue refining features
-                                    based on user feedback and usage patterns.
+                                    <strong>Beyond the to-do list:</strong> Break dreams into habits in Vision, explore them in a
+                                    Mandalart grid, and keep a bucket list for needs, wants, adventures and growth.
                                 </p>
                                 <p>
-                                    <strong>AI product exploration:</strong> Prototyped AI-assisted planning concepts — task suggestions, summaries,
-                                    and productivity insights — to evaluate how intelligent assistance could support daily routines.
-                                    These remain exploratory prototypes and are not part of the shipped app.
+                                    <strong>Small everyday support:</strong> A built-in focus timer and home-screen widget keep
+                                    the next step close. Free on the App Store for iOS 18 and later, with offline support and no ads.
                                 </p>
                                 <div class="project-tech">
                                     <span class="tech-tag">SwiftUI</span>
                                     <span class="tech-tag">Swift</span>
-                                    <span class="tech-tag">AWS Amplify</span>
-                                    <span class="tech-tag">Figma</span>
                                     <span class="tech-tag">App Store</span>
                                 </div>
                                 <div style="margin-top: var(--spacing-lg); padding-top: var(--spacing-md); border-top: 1px solid var(--border-color);">
                                     <p style="font-size: var(--font-size-sm); color: var(--text-secondary); margin-bottom: var(--spacing-sm);">
-                                        Want to learn more about the journey behind MONU?
+                                        Explore the current app and its real screens.
                                     </p>
-                                    <a href="https://medium.com/@wunjingchang.work/how-i-re-engineered-my-life-with-monu-planner-9228a8940427" target="_blank" class="learning-link" style="display: inline-flex; align-items: center; gap: var(--spacing-sm);">
-                                        <span>Read the Full Story on Medium</span>
+                                    <a href="https://www.monu-planner.com/" target="_blank" rel="noopener noreferrer" class="learning-link" style="display: inline-flex; align-items: center; gap: var(--spacing-sm);">
+                                        <span>Explore MONU</span>
                                         <i class="fas fa-external-link-alt"></i>
                                     </a>
                                 </div>
@@ -151,14 +189,14 @@
                     </div>
                     <div class="project-card ai-chat-project">
                         <a href="https://ashwannasleep.github.io/AI-chat-demo/" target="_blank" class="project-link">
-                            <img src="images/ai-chat-cover.svg" alt="AI Chat Demo" class="ai-chat-logo">
+                            <img src="images/chat-landscape.png" alt="AI Chat local development build" class="ai-chat-logo">
                         </a>
                         <div class="project-info">
                             <div class="project-heading">
                                 <h4>AI Chat Demo</h4>
-                                <span class="project-status status-prototype">Prototype</span>
+                                <span class="project-status status-prototype">Frontend demo</span>
                             </div>
-                            <p class="project-tagline">Conversational interface built around async request lifecycles, error recovery, and retry states</p>
+                            <p class="project-tagline">A document-aware conversation workspace with streamed responses and explicit connection states.</p>
                             <div class="project-actions">
                                 <a href="https://ashwannasleep.github.io/AI-chat-demo/" target="_blank" class="project-action-btn view-live">
                                     <i class="fas fa-external-link-alt"></i>
@@ -171,36 +209,33 @@
                             </div>
                             <div class="project-details" id="ai-chat-details">
                                 <p>
-                                    A polished chat interface exploring real-world async patterns, error handling, and seamless UX.
-                                    Built with careful attention to loading states, message flow, and responsive design — creating conversations that feel natural and intuitive.
+                                    Attach a text or Markdown document, ask questions with that context, and export the conversation as Markdown or JSON.
                                 </p>
                                 <p>
-                                    <strong>How It Helps:</strong> Demonstrates practical async request handling, error recovery states, and smooth message transitions.
-                                    Useful for understanding how to build responsive chat interfaces that handle edge cases gracefully, with clear feedback for loading, retry, and success states — essential patterns for modern web applications.
+                                    <strong>Under the hood:</strong> A React client and Express backend relay streamed model responses. Provider credentials stay on the server; requests support cancellation, input limits, timeouts, and explicit failures instead of canned fallback answers.
                                 </p>
                                 <p>
-                                    <strong>What I Learned:</strong> Building this project deepened my understanding of async JavaScript patterns, error handling strategies, and UX design for real-time interfaces.
-                                    I learned how to create smooth loading states, implement retry mechanisms, and design conversation flows that feel natural and responsive.
+                                    <strong>Current status:</strong> The public demo showcases the frontend. Live model responses require a separately deployed backend with server credentials and a configured model; that connection has not yet been verified. Document context is bounded text, not a retrieval database.
                                 </p>
                                 <div class="project-tech">
-                                    <span class="tech-tag">HTML</span>
-                                    <span class="tech-tag">CSS</span>
-                                    <span class="tech-tag">JavaScript</span>
-                                    <span class="tech-tag">AI API</span>
+                                    <span class="tech-tag">React</span>
+                                    <span class="tech-tag">Express</span>
+                                    <span class="tech-tag">SSE</span>
+                                    <span class="tech-tag">Document Context</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="project-card merchant-dashboard-project">
                         <a href="https://ashwannasleep.github.io/Merchant-Dashboard/" target="_blank" class="project-link">
-                            <img src="images/merchant-dashboard-cover.svg" alt="Merchant Dashboard Preview" class="merchant-dashboard-logo">
+                            <img src="images/merchant-landscape.png" alt="MerchantIQ local development build" class="merchant-dashboard-logo">
                         </a>
                         <div class="project-info">
                             <div class="project-heading">
-                                <h4>Merchant Dashboard</h4>
-                                <span class="project-status status-concept">Concept</span>
+                                <h4>MerchantIQ</h4>
+                                <span class="project-status status-concept">Interactive demo</span>
                             </div>
-                            <p class="project-tagline">E-commerce operations console — KPI cards, order pipeline, and low-stock alerts in one view</p>
+                            <p class="project-tagline">Turn inventory into a budget-aware replenishment plan. Adjust demand, lead time, and safety coverage before purchasing.</p>
                             <div class="project-actions">
                                 <a href="https://ashwannasleep.github.io/Merchant-Dashboard/" target="_blank" class="project-action-btn view-live">
                                     <i class="fas fa-external-link-alt"></i>
@@ -213,20 +248,19 @@
                             </div>
                             <div class="project-details" id="merchant-dashboard-details">
                                 <p>
-                                    A merchant operations dashboard concept focused on giving store owners a single place to track orders,
-                                    revenue trends, inventory alerts, and customer support status.
+                                    Import an inventory CSV or explore a 10,000-SKU sample catalog. See which products need replenishment, how many units the budget covers, and what remains unfunded.
                                 </p>
                                 <p>
-                                    <strong>Focus:</strong> Information hierarchy, role-based dashboard UX, and fast decision-making workflows for daily commerce operations.
+                                    <strong>Planning logic:</strong> Stock coverage determines priority. Demand, supplier lead time, and safety days set target quantities; whole units are allocated within the budget. Search the queue and export a filtered purchase draft.
                                 </p>
                                 <p>
-                                    <strong>What I Designed:</strong> KPI cards, order pipeline views, low-stock warnings, and an activity timeline to help merchants move from insight to action quickly.
+                                    <strong>Current status:</strong> Try the public demo with sample inventory or your own CSV. CSV data stays in the tab. No Amazon account is connected and no orders are placed. Estimates exclude open purchase orders, shipping, taxes, and supplier constraints.
                                 </p>
                                 <div class="project-tech">
-                                    <span class="tech-tag">Dashboard UX</span>
-                                    <span class="tech-tag">Data Visualization</span>
-                                    <span class="tech-tag">Product Design</span>
-                                    <span class="tech-tag">Frontend</span>
+                                    <span class="tech-tag">React</span>
+                                    <span class="tech-tag">TypeScript</span>
+                                    <span class="tech-tag">CSV Validation</span>
+                                    <span class="tech-tag">Replenishment Planning</span>
                                 </div>
                             </div>
                         </div>
@@ -280,87 +314,8 @@
     </section>
 
     <!-- Engineering Focus Section -->
-    <section id="focus" class="engineering-focus">
-        <div class="container">
-            <h2 class="section-title">Engineering Focus</h2>
-
-            <div class="focus-grid">
-                <div class="focus-card">
-                    <h3>Native iOS</h3>
-                    <p>A SwiftUI planner app, built and shipped to the App Store.</p>
-                    <div class="focus-tags">
-                        <span class="tech-tag">Swift</span>
-                        <span class="tech-tag">SwiftUI</span>
-                        <span class="tech-tag">Xcode</span>
-                    </div>
-                </div>
-
-                <div class="focus-card">
-                    <h3>Cloud Auth &amp; Sync</h3>
-                    <p>Authentication and cloud data sync running in production, via AWS Amplify.</p>
-                    <div class="focus-tags">
-                        <span class="tech-tag">AWS Amplify</span>
-                        <span class="tech-tag">Auth</span>
-                        <span class="tech-tag">Sync</span>
-                    </div>
-                </div>
-
-                <div class="focus-card">
-                    <h3>Edge Services</h3>
-                    <p>A Cloudflare Worker signing ES256 JWTs, keeping the private key off the client.</p>
-                    <div class="focus-tags">
-                        <span class="tech-tag">Workers</span>
-                        <span class="tech-tag">JWT / ES256</span>
-                        <span class="tech-tag">Web Crypto</span>
-                    </div>
-                    <a href="projects/apple-music-worker.html" class="focus-link">Case study →</a>
-                </div>
-
-                <div class="focus-card">
-                    <h3>AI Exploration</h3>
-                    <p>Prototyped AI planning features. Wrote a guide on LLM systems. Not shipped yet.</p>
-                    <div class="focus-tags">
-                        <span class="tech-tag">LLM APIs</span>
-                        <span class="tech-tag">RAG</span>
-                        <span class="tech-tag">Evaluation</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Technical Writing Section -->
-    <section id="writing" class="learning-journey">
-        <div class="container">
-            <h2 class="section-title">Technical Writing</h2>
-            <p class="section-subtitle">Working through a topic in depth by writing it up.</p>
-
-            <div class="learning-content">
-                <div class="learning-project">
-                    <div class="learning-card">
-                        <div class="learning-icon">
-                            <i class="fas fa-brain"></i>
-                        </div>
-                        <div class="learning-info">
-                            <h3>Notes on LLM Systems</h3>
-                            <p class="learning-description">What I've worked out so far about building on language models — tokens and cost, attention, sampling, retrieval, evaluation, and safety. Interactive throughout; everything runs in the browser.</p>
-                            <div class="learning-highlights">
-                                <span class="highlight-tag">LLMs</span>
-                                <span class="highlight-tag">RAG</span>
-                                <span class="highlight-tag">Evaluation</span>
-                                <span class="highlight-tag">Deployment</span>
-                            </div>
-                            <a href="llm_learning_guide.html" target="_blank" class="learning-link">
-                                <span>Read the notes</span>
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
+    <section id="focus" class="compact-lab"><div class="container"><span class="eyebrow">Under the hood</span><div class="lab-links"><span>SwiftUI + AWS Amplify</span><a href="projects/apple-music-worker.html">Cloudflare + ES256 JWT ↗</a><span>React + Go</span></div></div></section>
+    <section id="writing" class="compact-writing"><div class="container"><span class="eyebrow">Learning notes · Updated September 2026</span><a href="llm_learning_guide.html"><strong>Building beyond the prompt.</strong><span>Interactive notes on context, retrieval, structured outputs, agents, and evaluation.</span><b aria-hidden="true">↗</b></a></div></section>
 <!-- About Section -->
 <section id="about" class="about">
   <div class="container">
@@ -369,7 +324,8 @@
       <div class="about-text">
         <p>I'm a software engineer who takes products from design through to deployment.</p>
 
-        <p><strong><a href="https://www.monu-planner.com/" target="_blank" class="monu-link" data-tooltip="Plan smarter, live better">MONU</a></strong> is my most recent — an iOS planner now on the App Store. I designed it in Figma, built the client in SwiftUI, and integrated AWS Amplify for authentication and cloud sync, from first concept through release.</p>
+        <p>My latest project, <strong><a href="https://houstonecho24.io" target="_blank" rel="noopener noreferrer">Houston Echo</a></strong>, is a local community for Chinese speakers in Houston, connecting people through neighborhood conversations and shared knowledge.</p>
+        <p>I also created <strong><a href="https://www.monu-planner.com/" target="_blank" class="monu-link" data-tooltip="Plan smarter, live better">MONU</a></strong>, an iOS planner now on the App Store. I designed it in Figma, built the client in SwiftUI, and integrated AWS Amplify for authentication and cloud sync, from first concept through release.</p>
 
         <p>My work has moved steadily toward the backend since: the sync layer in MONU, and a Cloudflare Worker that handles third-party API authentication for this site. I write long-form technical guides alongside the building.</p>
       </div>
@@ -381,47 +337,10 @@
   </div>
 </section>
 
-    <!-- Music Section — live frontend for the Apple Music Cloudflare Worker -->
-    <section class="music-section">
-        <div class="container">
-            <h2 class="music-section-title">What I'm Listening To While I Code</h2>
-            <p class="section-subtitle music-section-note">
-                The frontend of a small system I built: a <strong>Cloudflare Worker</strong> signs an ES256 JWT,
-                calls the Apple Music API, and returns only the playlist data — so my private key never reaches the browser.
-            </p>
-
-            <div class="music-layout">
-                <div class="spotify-player" id="apple-music-player-container">
-                    <!-- Apple Music playlist player will be loaded here -->
-                    <div id="apple-music-player" style="width: 100%; height: 100%;">
-                        <div style="width: 100%; height: auto; min-height: 320px; background: #1a1a1a; border-radius: 16px; padding: 20px; display: flex; flex-direction: column; box-sizing: border-box;">
-                            <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 20px; flex-shrink: 0;">
-                                <div style="width: 100px; height: 100px; border-radius: 12px; background: linear-gradient(90deg, #2a2a2a 25%, rgba(255,255,255,0.1) 50%, #2a2a2a 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; flex-shrink: 0;"></div>
-                                <div style="flex: 1; min-width: 0;">
-                                    <div style="height: 20px; background: linear-gradient(90deg, #2a2a2a 25%, rgba(255,255,255,0.1) 50%, #2a2a2a 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 4px; margin-bottom: 8px; width: 60%;"></div>
-                                    <div style="height: 14px; background: linear-gradient(90deg, #2a2a2a 25%, rgba(255,255,255,0.1) 50%, #2a2a2a 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 4px; width: 40%;"></div>
-                                </div>
-                            </div>
-                            <div style="flex: 1;">
-                                <div style="display: flex; align-items: center; gap: 12px; padding: 12px; margin-bottom: 4px;">
-                                    <div style="width: 48px; height: 48px; border-radius: 8px; background: linear-gradient(90deg, #2a2a2a 25%, rgba(255,255,255,0.1) 50%, #2a2a2a 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite;"></div>
-                                    <div style="flex: 1;">
-                                        <div style="height: 15px; background: linear-gradient(90deg, #2a2a2a 25%, rgba(255,255,255,0.1) 50%, #2a2a2a 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 4px; margin-bottom: 6px; width: 70%;"></div>
-                                        <div style="height: 13px; background: linear-gradient(90deg, #2a2a2a 25%, rgba(255,255,255,0.1) 50%, #2a2a2a 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 4px; width: 50%;"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tracks-grid" id="tracks-container">
-                    <!-- Apple Music playlist tracks will be loaded here -->
-                </div>
-            </div>
-        </div>
-    </section>
-
+    <section class="music-section" id="music"><div class="container music-desk">
+      <div class="music-caption"><span class="eyebrow">Currently in my headphones</span><h2>A little soundtrack<br>for the build.</h2><a href="https://music.apple.com/us/playlist/pl.u-8aAVZ6qho0lEWVJ" target="_blank" rel="noopener noreferrer">Open the full playlist ↗</a></div>
+      <div class="listening-player"><div class="now-playing"><img id="record-art" src="images/fuji.jpg" alt="Playlist artwork"><div><span class="eyebrow">Ashwannamusic</span><h3 id="playing-name">Pick a track.</h3><p id="playing-artist">Short previews, full concentration.</p></div><button id="music-toggle" type="button" aria-label="Play preview" disabled>▶</button></div><div class="music-scrub"><span id="music-time">0:00</span><input id="music-seek" type="range" min="0" max="100" value="0" aria-label="Seek within preview" disabled><span id="music-duration">0:30</span></div><p id="music-status" role="status">Loading Ashley’s playlist…</p><div id="listening-tracks"></div><button id="music-retry" hidden type="button">Try again</button><audio id="preview-audio" preload="none"></audio></div>
+    </div></section>
     <!-- Certifications Section -->
     <section class="certifications">
         <div class="container">
@@ -473,64 +392,8 @@
         </div>
     </section>
 
-    <!-- Personal Interests Section -->
-    <section class="personal-interests-section">
-        <div class="container">
-            <h2 class="section-title">Life Outside Work</h2>
-            <div class="interests-layout">
-                <div class="interests-content">
-                    <div class="interest-item">
-                        <div class="interest-content">
-                            <span class="interest-icon">🐶</span>
-                            <div class="interest-text">
-                                <h4>My Dogs</h4>
-                                <p>My two dogs keep me grounded and remind me to slow down, stay playful, and enjoy the little moments.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Photo Gallery -->
-                <div class="photo-gallery">
-                <div class="gallery-container">
-                    <div class="gallery-stack">
-                        <div class="gallery-slide slide-back" data-position="back">
-                            <img src="images/Dog1.jpg" alt="Dog 1">
-                        </div>
-                        <div class="gallery-slide slide-middle" data-position="middle">
-                            <img src="images/Dog2.jpg" alt="Dog 2">
-                        </div>
-                        <div class="gallery-slide slide-front active" data-position="front">
-                            <img src="images/Dog3.jpg" alt="Dog 3">
-                        </div>
-                    </div>
-                    <!-- Hidden slides for rotation -->
-                    <div class="gallery-slide hidden" data-index="0">
-                        <img src="images/Dog1.jpg" alt="Dog 1">
-                    </div>
-                    <div class="gallery-slide hidden" data-index="1">
-                        <img src="images/Dog2.jpg" alt="Dog 2">
-                    </div>
-                    <div class="gallery-slide hidden" data-index="2">
-                        <img src="images/Dog3.jpg" alt="Dog 3">
-                    </div>
-                    <div class="gallery-slide hidden" data-index="3">
-                        <img src="images/Dog4.jpg" alt="Dog 4">
-                    </div>
-                    <div class="gallery-slide hidden" data-index="4">
-                        <img src="images/Dog5.jpg" alt="Dog 5">
-                    </div>
-                    <div class="gallery-slide hidden" data-index="5">
-                        <img src="images/Dog6.jpg" alt="Dog 6">
-                    </div>
-                    <div class="gallery-slide hidden" data-index="6">
-                        <img src="images/Dog7.jpg" alt="Dog 7">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
+    <section class="personal-interests-section"><div class="container"><div class="life-heading"><div><span class="eyebrow">Away from the keyboard</span><h2>My favorite coworkers.</h2><p>My two dogs. Excellent company. Questionable code reviews.</p></div><div class="photo-controls"><button type="button" id="photos-prev" aria-label="Previous photo">←</button><button type="button" id="photos-next" aria-label="Next photo">→</button></div></div><div class="photo-rail" tabindex="0" aria-label="Dog photos. Swipe or use arrow keys to explore."><button type="button" class="photo-tile" data-photo="1" aria-label="Enlarge dog photo 1"><img src="images/Dog1.jpg" alt="A moment with Ashley’s dogs, photo 1" loading="lazy"><span>01 / At home</span></button><button type="button" class="photo-tile" data-photo="2" aria-label="Enlarge dog photo 2"><img src="images/Dog2.jpg" alt="A moment with Ashley’s dogs, photo 2" loading="lazy"><span>02 / At home</span></button><button type="button" class="photo-tile" data-photo="3" aria-label="Enlarge dog photo 3"><img src="images/Dog3.jpg" alt="A moment with Ashley’s dogs, photo 3" loading="lazy"><span>03 / At home</span></button><button type="button" class="photo-tile" data-photo="4" aria-label="Enlarge dog photo 4"><img src="images/Dog4.jpg" alt="A moment with Ashley’s dogs, photo 4" loading="lazy"><span>04 / At home</span></button><button type="button" class="photo-tile" data-photo="5" aria-label="Enlarge dog photo 5"><img src="images/Dog5.jpg" alt="A moment with Ashley’s dogs, photo 5" loading="lazy"><span>05 / At home</span></button><button type="button" class="photo-tile" data-photo="6" aria-label="Enlarge dog photo 6"><img src="images/Dog6.jpg" alt="A moment with Ashley’s dogs, photo 6" loading="lazy"><span>06 / At home</span></button><button type="button" class="photo-tile" data-photo="7" aria-label="Enlarge dog photo 7"><img src="images/Dog7.jpg" alt="A moment with Ashley’s dogs, photo 7" loading="lazy"><span>07 / At home</span></button></div><p class="photo-hint">Swipe, use the arrows, or click a photo to get closer.</p></div></section>
+    <dialog id="photo-dialog"><button type="button" aria-label="Close photo" class="photo-close">×</button><img alt="Enlarged photo of Ashley’s dogs"></dialog>
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
@@ -587,7 +450,7 @@
     </button>
 
     <!-- Apple Music Integration -->
-    <script src="apple-music-integration.js"></script>
+    <script src="listening.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
