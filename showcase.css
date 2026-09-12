@@ -1,4 +1,6 @@
 /* Editorial presentation of real product assets. */
+body.dark-mode .avatar-pose{background-image:url('images/ashley-avatar-dark.png')}
+body.dark-mode .avatar-portrait{border-radius:0;background:transparent;mask-image:linear-gradient(to bottom,transparent 0%,black 5%,black 94%,transparent 100%)}
 .projects-grid .ai-chat-project .project-link.real-project-preview,.projects-grid .merchant-dashboard-project .project-link.real-project-preview{aspect-ratio:auto!important;display:flex;align-items:center;justify-content:center;height:460px!important;overflow:hidden;padding:16px!important;background:var(--bg-primary)}
 .projects-grid .ai-chat-project .project-link.real-project-preview>img,.projects-grid .merchant-dashboard-project .project-link.real-project-preview>img{width:auto!important;height:auto!important;max-height:100%!important;max-width:100%;object-fit:contain!important}
 @media(max-width:767px){.projects-grid .ai-chat-project .project-link.real-project-preview,.projects-grid .merchant-dashboard-project .project-link.real-project-preview{height:360px!important}}
